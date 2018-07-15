@@ -29,7 +29,7 @@ func (e *VersioningExtension) Name() string {
 }
 
 func (e *VersioningExtension) Setup(s fnext.ExtServer) error {
-    s.AddMiddleware(&VersioningMiddleware{})
+    s.AddAPIMiddleware(&VersioningMiddleware{})
     return nil
 }
 
