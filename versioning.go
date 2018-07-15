@@ -21,7 +21,7 @@ func (m *VersioningMiddleware) Handle(next http.Handler) http.Handler {
 	})
 }
 
-type VersioningExtension {
+type VersioningExtension struct {
 }
 
 func (e *VersioningExtension) Name() string {
