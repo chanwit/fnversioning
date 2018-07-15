@@ -13,12 +13,12 @@ type VersioningMiddleware struct {
 
 func (m *VersioningMiddleware) Handle(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-    if h, ok := r.Header["X-Function-Versioning"]; ok == true {
-      version := h[0]
-      r.URL.Path = r.URL.Path + "/" + version
-    }
-    next.ServeHTTP(w, r)
-  }
+    		if h, ok := r.Header["X-Function-Versioning"]; ok == true {
+      			version := h[0]
+      			r.URL.Path = r.URL.Path + "/" + version
+    		}
+    		next.ServeHTTP(w, r)
+	})
 }
 
 func init() {
