@@ -21,14 +21,19 @@ func (m *VersioningMiddleware) Handle(next http.Handler) http.Handler {
 	})
 }
 
-func init() {
-    server.RegisterExtension(&fnext.Extension{
-        Name:  "github.com/chanwit/fnversioning",
-        Setup: setup,
-    })
+type VersioningExtension {
 }
 
-func setup(s *fnext.ExtServer) error {
-    s.AddAPIMiddleware(&VersioningMiddleware{})
+func (e *VersioningExtension) Name() string {
+	return "github.com/chanwit/fnversioning"
+}
+
+func (e *VersioningExtension) Setup(s fnext.ExtServer) error {
+    s.AddMiddleware(&VersioningMiddleware{})
     return nil
+}
+
+
+func init() {
+	server.RegisterExtension(&VersioningExtension{})
 }
